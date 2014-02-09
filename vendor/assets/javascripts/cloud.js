@@ -75,7 +75,7 @@ function getURL(url, callback) {
       callback((Array.isArray(json) ? json : json.results).map(function(d) { return d.text; }).join("\n\n"));
       iframe.remove();
     });
-    iframe.attr("src", encodeURIComponent(url));
+    iframe.attr("src", "http://desolate-savannah-6607.herokuapp.com/statis_pages/word_cloud/?" + encodeURIComponent(url));
     return;
   }
 
@@ -90,7 +90,7 @@ function getURL(url, callback) {
 }
 
 function proxy(url, callback) {
-  d3.text(encodeURIComponent(url), callback);
+  d3.text("http://desolate-savannah-6607.herokuapp.com/statis_pages/word_cloud?url=" + encodeURIComponent(url), callback);
 }
 
 function flatten(o, k) {
@@ -217,7 +217,9 @@ function hashchange(fallback) {
 
 function load(f) {
   fetcher = f;
-  var h = encodeURIComponent(fetcher);
+  var h = /^https?:\/\//.test(fetcher)
+      ? "#" + encodeURIComponent(fetcher)
+      : "";
   if (fetcher != null) d3.select("#text").property("value", fetcher);
   if (location.hash !== h) location.hash = h;
   if (h) getURL(fetcher, parseHTML);

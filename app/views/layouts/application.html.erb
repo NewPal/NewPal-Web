@@ -26,7 +26,7 @@
 
 <script>
 (function() {
-  var myAPI = "http://web1.tunnlr.com:13014/messages/bodies";
+  var myAPI = "http://web1.tunnlr.com:13014/messages/index";
     var str = '';
   $.getJSON( myAPI, {
 
@@ -34,7 +34,7 @@
     format: "json"
   })
     .done(function( data ) {
-      $.each( data.items, function( i, value ) {
+      $.each( data.reverse(), function( i, value ) {
         var new_li = $('<li>')
         new_li.text(value.Body + ' | City: ' + value.City + ' | From: ' + value.PhoneNumber)
         $('.navList').append(new_li);

@@ -1,0 +1,37 @@
++		<iframe src="https://www.jasondavies.com/wordcloud/#http%3A%2F%2Fweb1.tunnlr.com%3A13014%2Fmessages%2Fbodies" width="1000" height="400">
+ +			
+ +		</iframe>
+
+
+<title>Word Cloud Generator</title>
+<h1>Trends</h1>
+
+
+<div> 
+
+<form>
+	<input placeholder="Type a filter word" type="text" id="filtertext"/>
+</form>
+		<table name='drg_table'>
+    		<tbody>
+    		    <ul class="navList">
+    		    </ul>
+    		</tbody>
+		</table>
+
+</div>
+
+<script>
+(function() {
+	$('#filtertext').keyup(function(){
+   var valThis = $(this).val().toLowerCase();
+    $('.navList>li').each(function(){
+     var text = $(this).text().toLowerCase();
+        (text.indexOf(valThis) == -1) ? $(this).hide() : $(this).show();            
+   });
+});
+  })();
+</script>
+
+
+

@@ -7,7 +7,8 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 130px;
+
 }
 
 section {
@@ -16,6 +17,14 @@ section {
 
 textarea {
   resize: vertical;
+
+}
+
+body ul li {
+
+  font-size: 1.7em;
+  line-height: 2em;
+
 }
 
 .center {
@@ -29,7 +38,7 @@ textarea {
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+  line-height: 2;
 }
 
 h1 {
@@ -48,10 +57,13 @@ h2 {
   color: #999;
 }
 
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+
+
 /* header */
 
 #logo {
@@ -70,6 +82,8 @@ p {
   color: #fff;
   text-decoration: none;
 }
+
+
 /* footer */
 
 footer {

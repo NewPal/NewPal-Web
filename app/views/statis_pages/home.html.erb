@@ -1,13 +1,32 @@
 <h1>New Pal</h1>
-<p>Critical ground communication for SMS based communities</p>
+<h2>Critical ground communication for SMS based communities</h2>
 
 
 <div> 
-	<form>
-	<label>Word Filter:</label> 
-		<input type="text" ng-model="yourWord" placeholder="Enter a word to filter"> <hr> 
-	</form>
-		<h1>Searching for: {{yourWord}}</h1> 
-</div>
+
+<form>
+	<input placeholder="Type a filter word" type="text" id="filtertext"/>
+</form>
+		<table name='drg_table'>
+    		<tbody>
+    		    <ul class="navList">
+    		    </ul>
+    		</tbody>
+		</table>
+
+
+
+<script>
+(function() {
+	$('#filtertext').keyup(function(){
+   var valThis = $(this).val().toLowerCase();
+    $('.navList>li').each(function(){
+     var text = $(this).text().toLowerCase();
+        (text.indexOf(valThis) == 0) ? $(this).show() : $(this).hide();            
+   });
+});
+  })();
+</script>
+
 
 

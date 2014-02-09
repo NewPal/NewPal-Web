@@ -1,16 +1,17 @@
 
 <!DOCTYPE html>
-<html ng-app="NewpalWeb">
-<!--this tag-->
+<html>
 
   <head>
     <title>New Pal</title>
-    <%= stylesheet_link_tag "application", media: "all",
-                                           "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
     <%= javascript_include_tag "unicode.js" %>
     <%= javascript_include_tag "d3.min.js" %>
     <%= javascript_include_tag "d3.layout.cloud.js" %>
     <%= javascript_include_tag "cloud.js" %>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+
     
 
     <%= csrf_meta_tags %>
@@ -19,12 +20,34 @@
     <![endif]-->
   </head>
   <body>
-  	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script> <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script> 
+
+
+<script>
+(function() {
+  var myAPI = "http://www.entourcity.com/newpal/api/messages";
+    var str = '';
+  $.getJSON( myAPI, {
+
+    tagmode: "any",
+    format: "json"
+  })
+    .done(function( data ) {
+      debugger
+      $.each( data, function( i, value ) {
+        var new_li = $('<li>')
+        new_li.text(value.Body + ' ' + value.City + ' ' + value.PhoneNumber)
+        $('.navList').append(new_li);
+      });
+    });
+})();
+</script>
   	
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "New Pal", '#', id: "logo" %>
+          <%= link_to "New Pal", 'root', id: "logo" %>
           <nav>
             <ul class="nav pull-right">
             </ul>
@@ -32,8 +55,10 @@
         </div>
       </div>
     </header>
-    <div class="container">
-      <%= yield %>
+    <div ng-view>
+      <div class="container" ng-app="NewpalWeb" ng-controller="AlertCtrl">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

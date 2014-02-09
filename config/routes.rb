@@ -1,5 +1,7 @@
 NewpalWeb::Application.routes.draw do
   root  'statis_pages#home'
+  get "statis_pages/map"
+  get "statis_pages/word_cloud"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
